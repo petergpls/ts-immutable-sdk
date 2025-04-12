@@ -6,12 +6,12 @@
     "@imtbl/metrics": "workspace:*",
     "@imtbl/passport": "workspace:*",
     "@imtbl/x-client": "workspace:*",
-    "@imtbl/x-provider": "workspace:*",
-    "ethers": "^6.13.4"
+    "@imtbl/x-provider": "workspace:*"
   },
   "devDependencies": {
     "eslint": "^8.40.0",
-    "parcel": "^2.8.3"
+    "parcel": "^2.8.3",
+	"ethers": "^6.13.4"
   },
   "scripts": {
     "build": "parcel build --no-cache --no-scope-hoist",

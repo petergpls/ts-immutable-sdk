@@ -1,10 +1,38 @@
 "use client";
 import { Box } from '@biom3/react';
-import { checkout } from '@imtbl/sdk';
+import { checkout, config, passport } from '@imtbl/sdk';
 import { CommerceFlowType, ConnectionSuccess, Widget, WidgetType } from '@imtbl/sdk/checkout';
 import { useEffect, useState } from 'react';
 
-const checkoutSDK = new checkout.Checkout();
+//const checkoutSDK = new checkout.Checkout();
+//========================= New work PeterG =================================================
+const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_PUBLISHABLE_KEY ?? '';
+const PUBLIC_CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID ?? '';
+
+// Set the environment to SANDBOX for testnet or PRODUCTION for mainnet
+const baseConfig = {
+  environment: config.Environment.SANDBOX,
+  publishableKey: PUBLISHABLE_KEY,
+};
+
+const passportInstance = new passport.Passport({
+  baseConfig,
+  clientId: PUBLIC_CLIENT_ID, // Replace with your actual client ID
+  redirectUri: 'http://localhost:3000/redirect,rungame://callback', // Replace with your redirect URI
+  logoutRedirectUri: 'http://localhost:3000/logout,rungame://logout', // Replace with your logout URI
+  audience: 'platform_api',
+  scope: 'openid offline_access email transact',
+});
+
+// Instantiate the Checkout SDKs with the default configurations
+const checkoutSDK = new checkout.Checkout({
+  baseConfig,
+  bridge: { enable: true },
+  onRamp: { enable: true },
+  swap: { enable: true },
+  passport: passportInstance,
+});
+//===========================================================================================
 
 function Widgets() {
 
@@ -14,7 +42,7 @@ function Widgets() {
 
     const loadWidgets = async () => {
       const widgetsFactory = await checkoutSDK.widgets({ config: {} });
-
+      console.log('T1'); // PeterG
       const widget = widgetsFactory.create(WidgetType.IMMUTABLE_COMMERCE, {})
       setWidget(widget);
     }
@@ -25,6 +53,7 @@ function Widgets() {
 
   useEffect(() => {
     if (!widget) return;
+    console.log('T2'); // PeterG
     widget.mount("widget-root", {
       flow: CommerceFlowType.WALLET,
     });
@@ -36,6 +65,7 @@ function Widgets() {
 
         // capture provider after user connects their wallet
         if (type === checkout.CommerceSuccessEventType.CONNECT_SUCCESS) {
+          
           const { walletProviderName } = data as ConnectionSuccess;
           console.log('connected to ', walletProviderName);
           // setProvider(data.provider);

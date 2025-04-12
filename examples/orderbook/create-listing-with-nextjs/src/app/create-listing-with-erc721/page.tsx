@@ -199,6 +199,8 @@ export default function CreateERC721ListingWithPassport() {
     setLoadingState(true);
     setLoadingText('Creating listing');
 
+    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+
     if (!browserProvider) {
       setListingErrorState("Please connect to Passport first");
       return;

@@ -67,8 +67,7 @@ Or you can navigate to the `/packages/checkout/sdk` directory by running the fol
 ```bash
 cd packages/checkout/sdk
 pnpm build
-```
-
+``` 
 In the sections below are some general commands that you can use in each package. 
 
 ### Development watch mode
