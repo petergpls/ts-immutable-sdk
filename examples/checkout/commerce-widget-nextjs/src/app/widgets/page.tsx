@@ -5,6 +5,7 @@ import { CommerceFlowType, ConnectionSuccess, Widget, WidgetType } from '@imtbl/
 import { useEffect, useState } from 'react';
 
 //const checkoutSDK = new checkout.Checkout();
+
 //========================= New work PeterG =================================================
 const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_PUBLISHABLE_KEY ?? '';
 const PUBLIC_CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID ?? '';

@@ -16,5 +16,11 @@ export default function Home() {
       rc={<NextLink href="/widgets" />}>
       Mount Commerce Widgets
     </Button>
+    <Button
+      className="mb-1"
+      size="medium"
+      rc={<NextLink href="/sales" />}>
+      Mount Commerce Widgets (Sales)
+    </Button>
   </>);
 }
