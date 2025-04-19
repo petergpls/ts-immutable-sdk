@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from 'react';
 import { checkout, config, passport } from '@imtbl/sdk';
 
@@ -18,8 +19,8 @@ const baseConfig = {
 const passportInstance = new passport.Passport({
   baseConfig,
   clientId: PUBLIC_CLIENT_ID, // Replace with your actual client ID
-  redirectUri: 'http://localhost:3000/redirect,rungame://callback', // Replace with your redirect URI
-  logoutRedirectUri: 'http://localhost:3000/logout,rungame://logout', // Replace with your logout URI
+  redirectUri: 'http://localhost:3000/redirect', // 'http://localhost:3000/redirect,rungame://callback'
+  logoutRedirectUri: 'http://localhost:3000/logout', // 'http://localhost:3000/logout,rungame://logout'
   audience: 'platform_api',
   scope: 'openid offline_access email transact',
 });
